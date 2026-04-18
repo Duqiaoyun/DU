@@ -1,0 +1,1304 @@
+{
+  "100": {
+    "zh": "保加利亚",
+    "en": "Bulgaria",
+    "iso2": "BG",
+    "continent": "Europe"
+  },
+  "104": {
+    "zh": "缅甸",
+    "en": "Myanmar",
+    "iso2": "MM",
+    "continent": "Asia"
+  },
+  "108": {
+    "zh": "布隆迪",
+    "en": "Burundi",
+    "iso2": "BI",
+    "continent": "Africa"
+  },
+  "112": {
+    "zh": "白俄罗斯",
+    "en": "Belarus",
+    "iso2": "BY",
+    "continent": "Europe"
+  },
+  "116": {
+    "zh": "柬埔寨",
+    "en": "Cambodia",
+    "iso2": "KH",
+    "continent": "Asia"
+  },
+  "120": {
+    "zh": "喀麦隆",
+    "en": "Cameroon",
+    "iso2": "CM",
+    "continent": "Africa"
+  },
+  "124": {
+    "zh": "加拿大",
+    "en": "Canada",
+    "iso2": "CA",
+    "continent": "North America"
+  },
+  "132": {
+    "zh": "佛得角",
+    "en": "Cape Verde",
+    "iso2": "CV",
+    "continent": "Africa"
+  },
+  "136": {
+    "zh": "开曼群岛",
+    "en": "Cayman Islands",
+    "iso2": "KY",
+    "continent": "North America"
+  },
+  "140": {
+    "zh": "中非",
+    "en": "Central African Republic",
+    "iso2": "CF",
+    "continent": "Africa"
+  },
+  "144": {
+    "zh": "斯里兰卡",
+    "en": "Sri Lanka",
+    "iso2": "LK",
+    "continent": "Asia"
+  },
+  "148": {
+    "zh": "乍得",
+    "en": "Chad",
+    "iso2": "TD",
+    "continent": "Africa"
+  },
+  "152": {
+    "zh": "智利",
+    "en": "Chile",
+    "iso2": "CL",
+    "continent": "South America"
+  },
+  "156": {
+    "zh": "中国",
+    "en": "China",
+    "iso2": "CN",
+    "continent": "Asia"
+  },
+  "158": {
+    "zh": "台湾",
+    "en": "Taiwan",
+    "iso2": "TW",
+    "continent": "Asia"
+  },
+  "170": {
+    "zh": "哥伦比亚",
+    "en": "Colombia",
+    "iso2": "CO",
+    "continent": "South America"
+  },
+  "174": {
+    "zh": "科摩罗",
+    "en": "Comoros",
+    "iso2": "KM",
+    "continent": "Africa"
+  },
+  "175": {
+    "zh": "马约特",
+    "en": "Mayotte",
+    "iso2": "YT",
+    "continent": "Africa"
+  },
+  "178": {
+    "zh": "刚果（布）",
+    "en": "Republic of the Congo",
+    "iso2": "CG",
+    "continent": "Africa"
+  },
+  "180": {
+    "zh": "刚果（金）",
+    "en": "DR Congo",
+    "iso2": "CD",
+    "continent": "Africa"
+  },
+  "188": {
+    "zh": "哥斯达黎加",
+    "en": "Costa Rica",
+    "iso2": "CR",
+    "continent": "North America"
+  },
+  "191": {
+    "zh": "克罗地亚",
+    "en": "Croatia",
+    "iso2": "HR",
+    "continent": "Europe"
+  },
+  "192": {
+    "zh": "古巴",
+    "en": "Cuba",
+    "iso2": "CU",
+    "continent": "North America"
+  },
+  "196": {
+    "zh": "塞浦路斯",
+    "en": "Cyprus",
+    "iso2": "CY",
+    "continent": "Asia"
+  },
+  "203": {
+    "zh": "捷克",
+    "en": "Czechia",
+    "iso2": "CZ",
+    "continent": "Europe"
+  },
+  "204": {
+    "zh": "贝宁",
+    "en": "Benin",
+    "iso2": "BJ",
+    "continent": "Africa"
+  },
+  "208": {
+    "zh": "丹麦",
+    "en": "Denmark",
+    "iso2": "DK",
+    "continent": "Europe"
+  },
+  "212": {
+    "zh": "多米尼克",
+    "en": "Dominica",
+    "iso2": "DM",
+    "continent": "North America"
+  },
+  "214": {
+    "zh": "多米尼加",
+    "en": "Dominican Republic",
+    "iso2": "DO",
+    "continent": "North America"
+  },
+  "218": {
+    "zh": "厄瓜多尔",
+    "en": "Ecuador",
+    "iso2": "EC",
+    "continent": "South America"
+  },
+  "222": {
+    "zh": "萨尔瓦多",
+    "en": "El Salvador",
+    "iso2": "SV",
+    "continent": "North America"
+  },
+  "226": {
+    "zh": "赤道几内亚",
+    "en": "Equatorial Guinea",
+    "iso2": "GQ",
+    "continent": "Africa"
+  },
+  "231": {
+    "zh": "埃塞俄比亚",
+    "en": "Ethiopia",
+    "iso2": "ET",
+    "continent": "Africa"
+  },
+  "232": {
+    "zh": "厄立特里亚",
+    "en": "Eritrea",
+    "iso2": "ER",
+    "continent": "Africa"
+  },
+  "233": {
+    "zh": "爱沙尼亚",
+    "en": "Estonia",
+    "iso2": "EE",
+    "continent": "Europe"
+  },
+  "234": {
+    "zh": "法罗群岛",
+    "en": "Faroe Islands",
+    "iso2": "FO",
+    "continent": "Europe"
+  },
+  "238": {
+    "zh": "福克兰群岛",
+    "en": "Falkland Islands",
+    "iso2": "FK",
+    "continent": "South America"
+  },
+  "242": {
+    "zh": "斐济",
+    "en": "Fiji",
+    "iso2": "FJ",
+    "continent": "Oceania"
+  },
+  "246": {
+    "zh": "芬兰",
+    "en": "Finland",
+    "iso2": "FI",
+    "continent": "Europe"
+  },
+  "250": {
+    "zh": "法国",
+    "en": "France",
+    "iso2": "FR",
+    "continent": "Europe"
+  },
+  "254": {
+    "zh": "法属圭亚那",
+    "en": "French Guiana",
+    "iso2": "GF",
+    "continent": "South America"
+  },
+  "260": {
+    "zh": "法属南方领地",
+    "en": "French Southern Territories",
+    "iso2": "TF",
+    "continent": "Antarctica"
+  },
+  "262": {
+    "zh": "吉布提",
+    "en": "Djibouti",
+    "iso2": "DJ",
+    "continent": "Africa"
+  },
+  "266": {
+    "zh": "加蓬",
+    "en": "Gabon",
+    "iso2": "GA",
+    "continent": "Africa"
+  },
+  "268": {
+    "zh": "格鲁吉亚",
+    "en": "Georgia",
+    "iso2": "GE",
+    "continent": "Asia"
+  },
+  "270": {
+    "zh": "冈比亚",
+    "en": "Gambia",
+    "iso2": "GM",
+    "continent": "Africa"
+  },
+  "275": {
+    "zh": "巴勒斯坦",
+    "en": "Palestine",
+    "iso2": "PS",
+    "continent": "Asia"
+  },
+  "276": {
+    "zh": "德国",
+    "en": "Germany",
+    "iso2": "DE",
+    "continent": "Europe"
+  },
+  "288": {
+    "zh": "加纳",
+    "en": "Ghana",
+    "iso2": "GH",
+    "continent": "Africa"
+  },
+  "292": {
+    "zh": "直布罗陀",
+    "en": "Gibraltar",
+    "iso2": "GI",
+    "continent": "Europe"
+  },
+  "296": {
+    "zh": "基里巴斯",
+    "en": "Kiribati",
+    "iso2": "KI",
+    "continent": "Oceania"
+  },
+  "300": {
+    "zh": "希腊",
+    "en": "Greece",
+    "iso2": "GR",
+    "continent": "Europe"
+  },
+  "304": {
+    "zh": "格陵兰",
+    "en": "Greenland",
+    "iso2": "GL",
+    "continent": "Europe"
+  },
+  "308": {
+    "zh": "格林纳达",
+    "en": "Grenada",
+    "iso2": "GD",
+    "continent": "North America"
+  },
+  "320": {
+    "zh": "危地马拉",
+    "en": "Guatemala",
+    "iso2": "GT",
+    "continent": "North America"
+  },
+  "324": {
+    "zh": "几内亚",
+    "en": "Guinea",
+    "iso2": "GN",
+    "continent": "Africa"
+  },
+  "328": {
+    "zh": "圭亚那",
+    "en": "Guyana",
+    "iso2": "GY",
+    "continent": "South America"
+  },
+  "332": {
+    "zh": "海地",
+    "en": "Haiti",
+    "iso2": "HT",
+    "continent": "North America"
+  },
+  "336": {
+    "zh": "梵蒂冈",
+    "en": "Vatican City",
+    "iso2": "VA",
+    "continent": "Europe"
+  },
+  "340": {
+    "zh": "洪都拉斯",
+    "en": "Honduras",
+    "iso2": "HN",
+    "continent": "North America"
+  },
+  "344": {
+    "zh": "香港",
+    "en": "Hong Kong",
+    "iso2": "HK",
+    "continent": "Asia"
+  },
+  "348": {
+    "zh": "匈牙利",
+    "en": "Hungary",
+    "iso2": "HU",
+    "continent": "Europe"
+  },
+  "352": {
+    "zh": "冰岛",
+    "en": "Iceland",
+    "iso2": "IS",
+    "continent": "Europe"
+  },
+  "356": {
+    "zh": "印度",
+    "en": "India",
+    "iso2": "IN",
+    "continent": "Asia"
+  },
+  "360": {
+    "zh": "印度尼西亚",
+    "en": "Indonesia",
+    "iso2": "ID",
+    "continent": "Asia"
+  },
+  "364": {
+    "zh": "伊朗",
+    "en": "Iran",
+    "iso2": "IR",
+    "continent": "Asia"
+  },
+  "368": {
+    "zh": "伊拉克",
+    "en": "Iraq",
+    "iso2": "IQ",
+    "continent": "Asia"
+  },
+  "372": {
+    "zh": "爱尔兰",
+    "en": "Ireland",
+    "iso2": "IE",
+    "continent": "Europe"
+  },
+  "376": {
+    "zh": "以色列",
+    "en": "Israel",
+    "iso2": "IL",
+    "continent": "Asia"
+  },
+  "380": {
+    "zh": "意大利",
+    "en": "Italy",
+    "iso2": "IT",
+    "continent": "Europe"
+  },
+  "384": {
+    "zh": "科特迪瓦",
+    "en": "Côte d'Ivoire",
+    "iso2": "CI",
+    "continent": "Africa"
+  },
+  "388": {
+    "zh": "牙买加",
+    "en": "Jamaica",
+    "iso2": "JM",
+    "continent": "North America"
+  },
+  "392": {
+    "zh": "日本",
+    "en": "Japan",
+    "iso2": "JP",
+    "continent": "Asia"
+  },
+  "398": {
+    "zh": "哈萨克斯坦",
+    "en": "Kazakhstan",
+    "iso2": "KZ",
+    "continent": "Asia"
+  },
+  "400": {
+    "zh": "约旦",
+    "en": "Jordan",
+    "iso2": "JO",
+    "continent": "Asia"
+  },
+  "404": {
+    "zh": "肯尼亚",
+    "en": "Kenya",
+    "iso2": "KE",
+    "continent": "Africa"
+  },
+  "408": {
+    "zh": "朝鲜",
+    "en": "North Korea",
+    "iso2": "KP",
+    "continent": "Asia"
+  },
+  "410": {
+    "zh": "韩国",
+    "en": "South Korea",
+    "iso2": "KR",
+    "continent": "Asia"
+  },
+  "414": {
+    "zh": "科威特",
+    "en": "Kuwait",
+    "iso2": "KW",
+    "continent": "Asia"
+  },
+  "417": {
+    "zh": "吉尔吉斯斯坦",
+    "en": "Kyrgyzstan",
+    "iso2": "KG",
+    "continent": "Asia"
+  },
+  "418": {
+    "zh": "老挝",
+    "en": "Laos",
+    "iso2": "LA",
+    "continent": "Asia"
+  },
+  "422": {
+    "zh": "黎巴嫩",
+    "en": "Lebanon",
+    "iso2": "LB",
+    "continent": "Asia"
+  },
+  "426": {
+    "zh": "莱索托",
+    "en": "Lesotho",
+    "iso2": "LS",
+    "continent": "Africa"
+  },
+  "428": {
+    "zh": "拉脱维亚",
+    "en": "Latvia",
+    "iso2": "LV",
+    "continent": "Europe"
+  },
+  "430": {
+    "zh": "利比里亚",
+    "en": "Liberia",
+    "iso2": "LR",
+    "continent": "Africa"
+  },
+  "434": {
+    "zh": "利比亚",
+    "en": "Libya",
+    "iso2": "LY",
+    "continent": "Africa"
+  },
+  "438": {
+    "zh": "列支敦士登",
+    "en": "Liechtenstein",
+    "iso2": "LI",
+    "continent": "Europe"
+  },
+  "440": {
+    "zh": "立陶宛",
+    "en": "Lithuania",
+    "iso2": "LT",
+    "continent": "Europe"
+  },
+  "442": {
+    "zh": "卢森堡",
+    "en": "Luxembourg",
+    "iso2": "LU",
+    "continent": "Europe"
+  },
+  "446": {
+    "zh": "澳门",
+    "en": "Macao",
+    "iso2": "MO",
+    "continent": "Asia"
+  },
+  "450": {
+    "zh": "马达加斯加",
+    "en": "Madagascar",
+    "iso2": "MG",
+    "continent": "Africa"
+  },
+  "454": {
+    "zh": "马拉维",
+    "en": "Malawi",
+    "iso2": "MW",
+    "continent": "Africa"
+  },
+  "458": {
+    "zh": "马来西亚",
+    "en": "Malaysia",
+    "iso2": "MY",
+    "continent": "Asia"
+  },
+  "462": {
+    "zh": "马尔代夫",
+    "en": "Maldives",
+    "iso2": "MV",
+    "continent": "Asia"
+  },
+  "466": {
+    "zh": "马里",
+    "en": "Mali",
+    "iso2": "ML",
+    "continent": "Africa"
+  },
+  "470": {
+    "zh": "马耳他",
+    "en": "Malta",
+    "iso2": "MT",
+    "continent": "Europe"
+  },
+  "478": {
+    "zh": "毛里塔尼亚",
+    "en": "Mauritania",
+    "iso2": "MR",
+    "continent": "Africa"
+  },
+  "480": {
+    "zh": "毛里求斯",
+    "en": "Mauritius",
+    "iso2": "MU",
+    "continent": "Africa"
+  },
+  "484": {
+    "zh": "墨西哥",
+    "en": "Mexico",
+    "iso2": "MX",
+    "continent": "North America"
+  },
+  "492": {
+    "zh": "摩纳哥",
+    "en": "Monaco",
+    "iso2": "MC",
+    "continent": "Europe"
+  },
+  "496": {
+    "zh": "蒙古",
+    "en": "Mongolia",
+    "iso2": "MN",
+    "continent": "Asia"
+  },
+  "498": {
+    "zh": "摩尔多瓦",
+    "en": "Moldova",
+    "iso2": "MD",
+    "continent": "Europe"
+  },
+  "499": {
+    "zh": "黑山",
+    "en": "Montenegro",
+    "iso2": "ME",
+    "continent": "Europe"
+  },
+  "504": {
+    "zh": "摩洛哥",
+    "en": "Morocco",
+    "iso2": "MA",
+    "continent": "Africa"
+  },
+  "508": {
+    "zh": "莫桑比克",
+    "en": "Mozambique",
+    "iso2": "MZ",
+    "continent": "Africa"
+  },
+  "512": {
+    "zh": "阿曼",
+    "en": "Oman",
+    "iso2": "OM",
+    "continent": "Asia"
+  },
+  "516": {
+    "zh": "纳米比亚",
+    "en": "Namibia",
+    "iso2": "NA",
+    "continent": "Africa"
+  },
+  "520": {
+    "zh": "瑙鲁",
+    "en": "Nauru",
+    "iso2": "NR",
+    "continent": "Oceania"
+  },
+  "524": {
+    "zh": "尼泊尔",
+    "en": "Nepal",
+    "iso2": "NP",
+    "continent": "Asia"
+  },
+  "528": {
+    "zh": "荷兰",
+    "en": "Netherlands",
+    "iso2": "NL",
+    "continent": "Europe"
+  },
+  "540": {
+    "zh": "新喀里多尼亚",
+    "en": "New Caledonia",
+    "iso2": "NC",
+    "continent": "Oceania"
+  },
+  "548": {
+    "zh": "瓦努阿图",
+    "en": "Vanuatu",
+    "iso2": "VU",
+    "continent": "Oceania"
+  },
+  "554": {
+    "zh": "新西兰",
+    "en": "New Zealand",
+    "iso2": "NZ",
+    "continent": "Oceania"
+  },
+  "558": {
+    "zh": "尼加拉瓜",
+    "en": "Nicaragua",
+    "iso2": "NI",
+    "continent": "North America"
+  },
+  "562": {
+    "zh": "尼日尔",
+    "en": "Niger",
+    "iso2": "NE",
+    "continent": "Africa"
+  },
+  "566": {
+    "zh": "尼日利亚",
+    "en": "Nigeria",
+    "iso2": "NG",
+    "continent": "Africa"
+  },
+  "570": {
+    "zh": "纽埃",
+    "en": "Niue",
+    "iso2": "NU",
+    "continent": "Oceania"
+  },
+  "578": {
+    "zh": "挪威",
+    "en": "Norway",
+    "iso2": "NO",
+    "continent": "Europe"
+  },
+  "583": {
+    "zh": "密克罗尼西亚",
+    "en": "Micronesia",
+    "iso2": "FM",
+    "continent": "Oceania"
+  },
+  "584": {
+    "zh": "马绍尔群岛",
+    "en": "Marshall Islands",
+    "iso2": "MH",
+    "continent": "Oceania"
+  },
+  "585": {
+    "zh": "帕劳",
+    "en": "Palau",
+    "iso2": "PW",
+    "continent": "Oceania"
+  },
+  "586": {
+    "zh": "巴基斯坦",
+    "en": "Pakistan",
+    "iso2": "PK",
+    "continent": "Asia"
+  },
+  "591": {
+    "zh": "巴拿马",
+    "en": "Panama",
+    "iso2": "PA",
+    "continent": "North America"
+  },
+  "598": {
+    "zh": "巴布亚新几内亚",
+    "en": "Papua New Guinea",
+    "iso2": "PG",
+    "continent": "Oceania"
+  },
+  "600": {
+    "zh": "巴拉圭",
+    "en": "Paraguay",
+    "iso2": "PY",
+    "continent": "South America"
+  },
+  "604": {
+    "zh": "秘鲁",
+    "en": "Peru",
+    "iso2": "PE",
+    "continent": "South America"
+  },
+  "608": {
+    "zh": "菲律宾",
+    "en": "Philippines",
+    "iso2": "PH",
+    "continent": "Asia"
+  },
+  "616": {
+    "zh": "波兰",
+    "en": "Poland",
+    "iso2": "PL",
+    "continent": "Europe"
+  },
+  "620": {
+    "zh": "葡萄牙",
+    "en": "Portugal",
+    "iso2": "PT",
+    "continent": "Europe"
+  },
+  "624": {
+    "zh": "几内亚比绍",
+    "en": "Guinea-Bissau",
+    "iso2": "GW",
+    "continent": "Africa"
+  },
+  "626": {
+    "zh": "东帝汶",
+    "en": "Timor-Leste",
+    "iso2": "TL",
+    "continent": "Asia"
+  },
+  "630": {
+    "zh": "波多黎各",
+    "en": "Puerto Rico",
+    "iso2": "PR",
+    "continent": "North America"
+  },
+  "634": {
+    "zh": "卡塔尔",
+    "en": "Qatar",
+    "iso2": "QA",
+    "continent": "Asia"
+  },
+  "642": {
+    "zh": "罗马尼亚",
+    "en": "Romania",
+    "iso2": "RO",
+    "continent": "Europe"
+  },
+  "643": {
+    "zh": "俄罗斯",
+    "en": "Russia",
+    "iso2": "RU",
+    "continent": "Asia"
+  },
+  "646": {
+    "zh": "卢旺达",
+    "en": "Rwanda",
+    "iso2": "RW",
+    "continent": "Africa"
+  },
+  "654": {
+    "zh": "圣赫勒拿",
+    "en": "Saint Helena",
+    "iso2": "SH",
+    "continent": "Africa"
+  },
+  "659": {
+    "zh": "圣基茨和尼维斯",
+    "en": "Saint Kitts and Nevis",
+    "iso2": "KN",
+    "continent": "North America"
+  },
+  "662": {
+    "zh": "圣卢西亚",
+    "en": "Saint Lucia",
+    "iso2": "LC",
+    "continent": "North America"
+  },
+  "670": {
+    "zh": "圣文森特和格林纳丁斯",
+    "en": "Saint Vincent and the Grenadines",
+    "iso2": "VC",
+    "continent": "North America"
+  },
+  "674": {
+    "zh": "圣马力诺",
+    "en": "San Marino",
+    "iso2": "SM",
+    "continent": "Europe"
+  },
+  "678": {
+    "zh": "圣多美和普林西比",
+    "en": "São Tomé and Príncipe",
+    "iso2": "ST",
+    "continent": "Africa"
+  },
+  "682": {
+    "zh": "沙特阿拉伯",
+    "en": "Saudi Arabia",
+    "iso2": "SA",
+    "continent": "Asia"
+  },
+  "686": {
+    "zh": "塞内加尔",
+    "en": "Senegal",
+    "iso2": "SN",
+    "continent": "Africa"
+  },
+  "688": {
+    "zh": "塞尔维亚",
+    "en": "Serbia",
+    "iso2": "RS",
+    "continent": "Europe"
+  },
+  "690": {
+    "zh": "塞舌尔",
+    "en": "Seychelles",
+    "iso2": "SC",
+    "continent": "Africa"
+  },
+  "694": {
+    "zh": "塞拉利昂",
+    "en": "Sierra Leone",
+    "iso2": "SL",
+    "continent": "Africa"
+  },
+  "702": {
+    "zh": "新加坡",
+    "en": "Singapore",
+    "iso2": "SG",
+    "continent": "Asia"
+  },
+  "703": {
+    "zh": "斯洛伐克",
+    "en": "Slovakia",
+    "iso2": "SK",
+    "continent": "Europe"
+  },
+  "704": {
+    "zh": "越南",
+    "en": "Vietnam",
+    "iso2": "VN",
+    "continent": "Asia"
+  },
+  "705": {
+    "zh": "斯洛文尼亚",
+    "en": "Slovenia",
+    "iso2": "SI",
+    "continent": "Europe"
+  },
+  "706": {
+    "zh": "索马里",
+    "en": "Somalia",
+    "iso2": "SO",
+    "continent": "Africa"
+  },
+  "710": {
+    "zh": "南非",
+    "en": "South Africa",
+    "iso2": "ZA",
+    "continent": "Africa"
+  },
+  "716": {
+    "zh": "津巴布韦",
+    "en": "Zimbabwe",
+    "iso2": "ZW",
+    "continent": "Africa"
+  },
+  "724": {
+    "zh": "西班牙",
+    "en": "Spain",
+    "iso2": "ES",
+    "continent": "Europe"
+  },
+  "728": {
+    "zh": "南苏丹",
+    "en": "South Sudan",
+    "iso2": "SS",
+    "continent": "Africa"
+  },
+  "729": {
+    "zh": "苏丹",
+    "en": "Sudan",
+    "iso2": "SD",
+    "continent": "Africa"
+  },
+  "732": {
+    "zh": "西撒哈拉",
+    "en": "Western Sahara",
+    "iso2": "EH",
+    "continent": "Africa"
+  },
+  "740": {
+    "zh": "苏里南",
+    "en": "Suriname",
+    "iso2": "SR",
+    "continent": "South America"
+  },
+  "748": {
+    "zh": "斯威士兰",
+    "en": "Eswatini",
+    "iso2": "SZ",
+    "continent": "Africa"
+  },
+  "752": {
+    "zh": "瑞典",
+    "en": "Sweden",
+    "iso2": "SE",
+    "continent": "Europe"
+  },
+  "756": {
+    "zh": "瑞士",
+    "en": "Switzerland",
+    "iso2": "CH",
+    "continent": "Europe"
+  },
+  "760": {
+    "zh": "叙利亚",
+    "en": "Syria",
+    "iso2": "SY",
+    "continent": "Asia"
+  },
+  "762": {
+    "zh": "塔吉克斯坦",
+    "en": "Tajikistan",
+    "iso2": "TJ",
+    "continent": "Asia"
+  },
+  "764": {
+    "zh": "泰国",
+    "en": "Thailand",
+    "iso2": "TH",
+    "continent": "Asia"
+  },
+  "768": {
+    "zh": "多哥",
+    "en": "Togo",
+    "iso2": "TG",
+    "continent": "Africa"
+  },
+  "776": {
+    "zh": "汤加",
+    "en": "Tonga",
+    "iso2": "TO",
+    "continent": "Oceania"
+  },
+  "780": {
+    "zh": "特立尼达和多巴哥",
+    "en": "Trinidad and Tobago",
+    "iso2": "TT",
+    "continent": "North America"
+  },
+  "784": {
+    "zh": "阿联酋",
+    "en": "United Arab Emirates",
+    "iso2": "AE",
+    "continent": "Asia"
+  },
+  "788": {
+    "zh": "突尼斯",
+    "en": "Tunisia",
+    "iso2": "TN",
+    "continent": "Africa"
+  },
+  "792": {
+    "zh": "土耳其",
+    "en": "Turkey",
+    "iso2": "TR",
+    "continent": "Asia"
+  },
+  "795": {
+    "zh": "土库曼斯坦",
+    "en": "Turkmenistan",
+    "iso2": "TM",
+    "continent": "Asia"
+  },
+  "798": {
+    "zh": "图瓦卢",
+    "en": "Tuvalu",
+    "iso2": "TV",
+    "continent": "Oceania"
+  },
+  "800": {
+    "zh": "乌干达",
+    "en": "Uganda",
+    "iso2": "UG",
+    "continent": "Africa"
+  },
+  "804": {
+    "zh": "乌克兰",
+    "en": "Ukraine",
+    "iso2": "UA",
+    "continent": "Europe"
+  },
+  "807": {
+    "zh": "北马其顿",
+    "en": "North Macedonia",
+    "iso2": "MK",
+    "continent": "Europe"
+  },
+  "818": {
+    "zh": "埃及",
+    "en": "Egypt",
+    "iso2": "EG",
+    "continent": "Africa"
+  },
+  "826": {
+    "zh": "英国",
+    "en": "United Kingdom",
+    "iso2": "GB",
+    "continent": "Europe"
+  },
+  "834": {
+    "zh": "坦桑尼亚",
+    "en": "Tanzania",
+    "iso2": "TZ",
+    "continent": "Africa"
+  },
+  "840": {
+    "zh": "美国",
+    "en": "United States",
+    "iso2": "US",
+    "continent": "North America"
+  },
+  "854": {
+    "zh": "布基纳法索",
+    "en": "Burkina Faso",
+    "iso2": "BF",
+    "continent": "Africa"
+  },
+  "858": {
+    "zh": "乌拉圭",
+    "en": "Uruguay",
+    "iso2": "UY",
+    "continent": "South America"
+  },
+  "860": {
+    "zh": "乌兹别克斯坦",
+    "en": "Uzbekistan",
+    "iso2": "UZ",
+    "continent": "Asia"
+  },
+  "862": {
+    "zh": "委内瑞拉",
+    "en": "Venezuela",
+    "iso2": "VE",
+    "continent": "South America"
+  },
+  "882": {
+    "zh": "萨摩亚",
+    "en": "Samoa",
+    "iso2": "WS",
+    "continent": "Oceania"
+  },
+  "887": {
+    "zh": "也门",
+    "en": "Yemen",
+    "iso2": "YE",
+    "continent": "Asia"
+  },
+  "894": {
+    "zh": "赞比亚",
+    "en": "Zambia",
+    "iso2": "ZM",
+    "continent": "Africa"
+  },
+  "004": {
+    "zh": "阿富汗",
+    "en": "Afghanistan",
+    "iso2": "AF",
+    "continent": "Asia"
+  },
+  "031": {
+    "zh": "阿塞拜疆",
+    "en": "Azerbaijan",
+    "iso2": "AZ",
+    "continent": "Asia"
+  },
+  "048": {
+    "zh": "巴林",
+    "en": "Bahrain",
+    "iso2": "BH",
+    "continent": "Asia"
+  },
+  "050": {
+    "zh": "孟加拉国",
+    "en": "Bangladesh",
+    "iso2": "BD",
+    "continent": "Asia"
+  },
+  "051": {
+    "zh": "亚美尼亚",
+    "en": "Armenia",
+    "iso2": "AM",
+    "continent": "Asia"
+  },
+  "064": {
+    "zh": "不丹",
+    "en": "Bhutan",
+    "iso2": "BT",
+    "continent": "Asia"
+  },
+  "096": {
+    "zh": "文莱",
+    "en": "Brunei",
+    "iso2": "BN",
+    "continent": "Asia"
+  },
+  "008": {
+    "zh": "阿尔巴尼亚",
+    "en": "Albania",
+    "iso2": "AL",
+    "continent": "Europe"
+  },
+  "020": {
+    "zh": "安道尔",
+    "en": "Andorra",
+    "iso2": "AD",
+    "continent": "Europe"
+  },
+  "040": {
+    "zh": "奥地利",
+    "en": "Austria",
+    "iso2": "AT",
+    "continent": "Europe"
+  },
+  "056": {
+    "zh": "比利时",
+    "en": "Belgium",
+    "iso2": "BE",
+    "continent": "Europe"
+  },
+  "070": {
+    "zh": "波黑",
+    "en": "Bosnia and Herzegovina",
+    "iso2": "BA",
+    "continent": "Europe"
+  },
+  "name:Kosovo": {
+    "zh": "科索沃",
+    "en": "Kosovo",
+    "iso2": "XK",
+    "continent": "Europe"
+  },
+  "012": {
+    "zh": "阿尔及利亚",
+    "en": "Algeria",
+    "iso2": "DZ",
+    "continent": "Africa"
+  },
+  "024": {
+    "zh": "安哥拉",
+    "en": "Angola",
+    "iso2": "AO",
+    "continent": "Africa"
+  },
+  "072": {
+    "zh": "博茨瓦纳",
+    "en": "Botswana",
+    "iso2": "BW",
+    "continent": "Africa"
+  },
+  "086": {
+    "zh": "英属印度洋领地",
+    "en": "British Indian Ocean Territory",
+    "iso2": "IO",
+    "continent": "Africa"
+  },
+  "name:Somaliland": {
+    "zh": "索马里兰",
+    "en": "Somaliland",
+    "iso2": "XS",
+    "continent": "Africa"
+  },
+  "name:N. Cyprus": {
+    "zh": "北塞浦路斯",
+    "en": "Northern Cyprus",
+    "iso2": "XN",
+    "continent": "Asia"
+  },
+  "028": {
+    "zh": "安提瓜和巴布达",
+    "en": "Antigua and Barbuda",
+    "iso2": "AG",
+    "continent": "North America"
+  },
+  "044": {
+    "zh": "巴哈马",
+    "en": "Bahamas",
+    "iso2": "BS",
+    "continent": "North America"
+  },
+  "052": {
+    "zh": "巴巴多斯",
+    "en": "Barbados",
+    "iso2": "BB",
+    "continent": "North America"
+  },
+  "060": {
+    "zh": "百慕大",
+    "en": "Bermuda",
+    "iso2": "BM",
+    "continent": "North America"
+  },
+  "084": {
+    "zh": "伯利兹",
+    "en": "Belize",
+    "iso2": "BZ",
+    "continent": "North America"
+  },
+  "032": {
+    "zh": "阿根廷",
+    "en": "Argentina",
+    "iso2": "AR",
+    "continent": "South America"
+  },
+  "068": {
+    "zh": "玻利维亚",
+    "en": "Bolivia",
+    "iso2": "BO",
+    "continent": "South America"
+  },
+  "076": {
+    "zh": "巴西",
+    "en": "Brazil",
+    "iso2": "BR",
+    "continent": "South America"
+  },
+  "036": {
+    "zh": "澳大利亚",
+    "en": "Australia",
+    "iso2": "AU",
+    "continent": "Oceania"
+  },
+  "090": {
+    "zh": "所罗门群岛",
+    "en": "Solomon Islands",
+    "iso2": "SB",
+    "continent": "Oceania"
+  },
+  "010": {
+    "zh": "南极洲",
+    "en": "Antarctica",
+    "iso2": "AQ",
+    "continent": "Antarctica"
+  }
+}
