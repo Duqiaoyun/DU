@@ -156,7 +156,7 @@
     }
     #sheet.visible { transform: translate(-50%, 0); }
     #sheet .names {
-      font-size: 22px; margin-bottom: 14px;
+      font-size: 22px; margin-bottom: 10px;
       display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;
     }
     #sheet .name-zh { font-weight: 600; }
@@ -165,6 +165,24 @@
       color: var(--accent); font-family: "Consolas", "Menlo", monospace; font-size: 14px;
       padding: 2px 8px; border: 1px solid var(--panel-border); border-radius: 4px;
       letter-spacing: 0.1em;
+    }
+    #sheet .hint {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      background: color-mix(in oklab, var(--accent) 12%, transparent);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      color: var(--text);
+    }
+    #sheet .hint.hidden { display: none; }
+    #sheet .hint .hint-label {
+      display: inline-block;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-right: 8px;
+      letter-spacing: 0.05em;
     }
     #sheet .buttons { display: flex; gap: 8px; }
     #sheet button {
@@ -205,6 +223,27 @@
       dominant-baseline: central;
     }
 
+    .country-label {
+      fill: var(--text);
+      font-size: 11px;
+      font-family: inherit;
+      text-anchor: middle;
+      pointer-events: none;
+      user-select: none;
+      dominant-baseline: central;
+      paint-order: stroke;
+      stroke: var(--bg);
+      stroke-width: 2.5px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    #memorize-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
     #loading, #error {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
@@ -225,6 +264,7 @@
           <option value="minimal">极简黑白</option>
           <option value="terrain">地形</option>
         </select>
+        <button id="memorize-btn" title="显示全部国家名称以供记忆，再次点击进入背诵模式">📖 记忆模式</button>
         <button id="reset-btn">重置进度</button>
       </div>
     </header>
@@ -242,6 +282,7 @@
           <label><input type="checkbox" id="toggle-zh" checked> 中文</label>
           <label><input type="checkbox" id="toggle-en"> 英文</label>
           <label><input type="checkbox" id="toggle-iso"> ISO 代码</label>
+          <label><input type="checkbox" id="toggle-hint"> 记忆提示</label>
         </div>
 
         <div class="section">
@@ -260,6 +301,9 @@
             <span class="name-zh"></span>
             <span class="name-en"></span>
             <span class="name-iso"></span>
+          </div>
+          <div class="hint hidden">
+            <span class="hint-label">记忆点</span><span class="hint-text"></span>
           </div>
           <div class="buttons">
             <button class="correct" data-action="correct">✅ 记对了</button>
@@ -282,7 +326,8 @@
       version: 1,
       theme: 'dark',
       view: 'globe',
-      display: { zh: true, en: false, iso: false },
+      display: { zh: true, en: false, iso: false, hint: false },
+      memorizeMode: false,
       progress: {},
     };
 
@@ -328,9 +373,9 @@
       return { width: container.clientWidth, height: container.clientHeight };
     }
 
-    let topo, names;
+    let topo, names, mnemonics;
     try {
-      [topo, names] = await Promise.all([
+      [topo, names, mnemonics] = await Promise.all([
         fetch('data/countries.topo.json').then(r => {
           if (!r.ok) throw new Error('topology ' + r.status);
           return r.json();
@@ -339,6 +384,7 @@
           if (!r.ok) throw new Error('names ' + r.status);
           return r.json();
         }),
+        fetch('data/mnemonics.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
       ]);
     } catch (e) {
       loadingEl.id = 'error';
@@ -403,6 +449,7 @@
       .attr('data-key', keyOf);
 
     const isoLayer = svg.append('g').attr('class', 'iso-labels');
+    const nameLayer = svg.append('g').attr('class', 'name-labels');
 
     // Apply saved progress
     paths.each(function(d) {
@@ -448,6 +495,7 @@
       sphere.attr('d', path);
       paths.attr('d', path);
       updateIsoLabels();
+      updateNameLabels();
     });
 
     // Catch pointerup anywhere (including outside the svg) to end drag reliably.
@@ -470,13 +518,14 @@
       event.preventDefault();
       const base = VB_H;
       const minScale = base * 0.2;
-      const maxScale = base * 2.5;
+      const maxScale = base * 8;
       const factor = event.deltaY < 0 ? 1.15 : 0.87;
       const newScale = Math.max(minScale, Math.min(maxScale, projection.scale() * factor));
       projection.scale(newScale);
       sphere.attr('d', path);
       paths.attr('d', path);
       updateIsoLabels();
+      updateNameLabels();
     }, { passive: false });
 
     // No resize handler needed — fixed viewBox + preserveAspectRatio scales automatically
@@ -486,7 +535,14 @@
     const sheetZh = sheet.querySelector('.name-zh');
     const sheetEn = sheet.querySelector('.name-en');
     const sheetIso = sheet.querySelector('.name-iso');
+    const sheetHint = sheet.querySelector('.hint');
+    const sheetHintText = sheet.querySelector('.hint-text');
     let selectedKey = null;
+
+    function hintOf(feature) {
+      const iso2 = infoOf(feature).iso2;
+      return (iso2 && mnemonics[iso2]) || '';
+    }
 
     paths.on('pointerup', (event, d) => {
       if (hasMoved) return;
@@ -496,11 +552,11 @@
 
     function selectCountry(feature) {
       selectedKey = keyOf(feature);
-      updateSheetContent(infoOf(feature));
+      updateSheetContent(infoOf(feature), hintOf(feature));
       sheet.classList.add('visible');
     }
 
-    function updateSheetContent(info) {
+    function updateSheetContent(info, hint) {
       const showZh = state.display.zh;
       const showEn = state.display.en;
       const showIso = state.display.iso;
@@ -520,6 +576,10 @@
         sheetZh.textContent = '?';
         sheetZh.style.display = '';
       }
+
+      const showHint = state.display.hint && hint;
+      sheetHint.classList.toggle('hidden', !showHint);
+      sheetHintText.textContent = showHint ? hint : '';
     }
 
     function hideSheet() {
@@ -577,17 +637,19 @@
     document.getElementById('toggle-zh').checked = state.display.zh;
     document.getElementById('toggle-en').checked = state.display.en;
     document.getElementById('toggle-iso').checked = state.display.iso;
+    document.getElementById('toggle-hint').checked = state.display.hint;
 
-    ['toggle-zh', 'toggle-en', 'toggle-iso'].forEach(id => {
+    ['toggle-zh', 'toggle-en', 'toggle-iso', 'toggle-hint'].forEach(id => {
       document.getElementById(id).addEventListener('change', (e) => {
         const key = id.replace('toggle-', '');
         state.display[key] = e.target.checked;
         saveState();
         updateIsoLabels();
+        updateNameLabels();
         if (selectedKey != null) {
           // refresh visible sheet
           const feat = countries.find(f => keyOf(f) === selectedKey);
-          if (feat) updateSheetContent(infoOf(feat));
+          if (feat) updateSheetContent(infoOf(feat), hintOf(feat));
         }
       });
     });
@@ -618,6 +680,63 @@
         });
     }
 
+    function labelFor(feature) {
+      const info = infoOf(feature);
+      const parts = [];
+      if (state.display.zh && info.zh) parts.push(info.zh);
+      if (state.display.en && info.en) parts.push(info.en);
+      if (state.display.iso && info.iso2) parts.push(info.iso2);
+      if (parts.length === 0) return info.zh || info.en || info.iso2 || '';
+      return parts.join(' · ');
+    }
+
+    function isCentroidVisible(feature) {
+      if (currentView !== 'globe') return true;
+      const geoCentroid = d3.geoCentroid(feature);
+      const rotate = projection.rotate();
+      // Distance on sphere between geoCentroid and the projection center
+      const toRad = Math.PI / 180;
+      const lon1 = geoCentroid[0] * toRad, lat1 = geoCentroid[1] * toRad;
+      const lon2 = -rotate[0] * toRad, lat2 = -rotate[1] * toRad;
+      const cosC = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2);
+      return cosC > 0.05;
+    }
+
+    function updateNameLabels() {
+      if (!state.memorizeMode) {
+        nameLayer.selectAll('text').remove();
+        return;
+      }
+      const visible = countries.filter(isCentroidVisible);
+      const selection = nameLayer.selectAll('text').data(visible, keyOf);
+      selection.exit().remove();
+      const entered = selection.enter().append('text').attr('class', 'country-label');
+      entered.merge(selection)
+        .text(labelFor)
+        .attr('transform', d => {
+          const c = path.centroid(d);
+          if (!isFinite(c[0])) return 'translate(-9999,-9999)';
+          return `translate(${c[0]}, ${c[1]})`;
+        })
+        .attr('opacity', d => {
+          const c = path.centroid(d);
+          return isFinite(c[0]) ? 1 : 0;
+        });
+    }
+
+    const memorizeBtn = document.getElementById('memorize-btn');
+    function applyMemorizeMode() {
+      memorizeBtn.classList.toggle('active', state.memorizeMode);
+      memorizeBtn.textContent = state.memorizeMode ? '🙈 背诵模式' : '📖 记忆模式';
+      updateNameLabels();
+    }
+    memorizeBtn.addEventListener('click', () => {
+      state.memorizeMode = !state.memorizeMode;
+      saveState();
+      applyMemorizeMode();
+    });
+    applyMemorizeMode();
+
     // ===== View switch =====
     function applyView(view) {
       currentView = view;
@@ -640,6 +759,7 @@
       sphere.attr('d', path);
       paths.attr('d', path);
       updateIsoLabels();
+      updateNameLabels();
       saveState();
     }
 
