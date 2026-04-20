@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>生物分类学习 · 界门纲目科属种</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #191c24;
+      --panel-2: #20242e;
+      --text: #e6e7eb;
+      --muted: #8a8f9a;
+      --accent: #6ea8fe;
+      --accent-soft: color-mix(in oklab, #6ea8fe 18%, transparent);
+      --border: #2a2e38;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: var(--panel);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 { margin: 0; font-size: 18px; font-weight: 600; }
+    header .mnemonic {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.3em;
+    }
+    header .mnemonic b { color: var(--accent); }
+    .spacer { flex: 1; }
+
+    button {
+      background: var(--panel-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    button:hover { border-color: var(--accent); color: var(--accent); }
+    button:active { transform: translateY(1px); }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 16px 24px 48px; }
+
+    /* Breadcrumb */
+    .crumb {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      margin: 12px 0;
+      color: var(--muted);
+    }
+    .crumb-item {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      color: var(--text);
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .crumb-item:hover { border-color: var(--accent); color: var(--accent); }
+    .crumb-item .rank { color: var(--muted); font-size: 11px; letter-spacing: 0.05em; }
+    .crumb-item.current { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); cursor: default; }
+    .crumb .sep { color: var(--muted); padding: 0 2px; }
+
+    /* Current level header */
+    .level-head {
+      margin: 16px 0 12px;
+      padding: 12px 16px;
+      background: var(--panel);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .level-head .rank-title {
+      font-size: 16px;
+    }
+    .level-head .rank-title .big {
+      color: var(--accent);
+      font-size: 22px;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+    .level-head .hint { color: var(--muted); font-size: 13px; }
+    .level-head .compare-btn {
+      background: var(--panel-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .level-head .compare-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .level-head .compare-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .level-head .compare-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Compare panel */
+    .compare-panel {
+      margin-top: 8px;
+      margin-bottom: 14px;
+      padding: 14px 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .compare-panel .title {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .compare-panel .row {
+      display: grid;
+      grid-template-columns: minmax(120px, 180px) 1fr;
+      gap: 16px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      align-items: baseline;
+    }
+    .compare-panel .row:last-child { border-bottom: none; }
+    .compare-panel .name .zh { font-weight: 500; }
+    .compare-panel .name .latin { color: var(--muted); font-style: italic; font-size: 13px; margin-left: 6px; }
+    .compare-panel .desc { color: var(--text); font-size: 14px; line-height: 1.55; }
+    .compare-panel .desc.missing { color: var(--muted); font-style: italic; }
+
+    /* Card grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--panel-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card-img .placeholder {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .card-img .placeholder.loading::after {
+      content: '';
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .card-body { padding: 10px 12px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .card-body .rank-tag {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+    .card-body .rank-tag b { color: var(--accent); font-weight: 600; }
+    .card-body .zh { font-size: 16px; font-weight: 500; }
+    .card-body .latin { color: var(--muted); font-style: italic; font-size: 13px; }
+    .card-body .note { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .card-body .leaf-hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Detail view (leaf) */
+    .detail {
+      display: grid;
+      grid-template-columns: minmax(260px, 380px) 1fr;
+      gap: 24px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .detail-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--panel-2);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .detail-img img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-info h2 { margin: 0 0 4px; font-size: 28px; }
+    .detail-info .latin { color: var(--muted); font-style: italic; font-size: 17px; margin-bottom: 12px; }
+    .detail-info .note { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+    .detail-info .links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .detail-info .links a {
+      text-decoration: none; color: var(--text);
+      background: var(--panel-2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 6px 12px; font-size: 13px;
+    }
+    .detail-info .links a:hover { border-color: var(--accent); color: var(--accent); }
+
+    .ancestry { margin-top: 8px; }
+    .ancestry-title { color: var(--muted); font-size: 12px; margin-bottom: 6px; letter-spacing: 0.05em; }
+    .ancestry-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      align-items: baseline;
+    }
+    .ancestry-row:last-child { border-bottom: none; }
+    .ancestry-rank { color: var(--accent); font-weight: 600; font-size: 14px; }
+    .ancestry-rank .en { color: var(--muted); font-size: 11px; font-weight: 400; margin-left: 4px; letter-spacing: 0.05em; }
+    .ancestry-name .zh { font-size: 15px; }
+    .ancestry-name .latin { color: var(--muted); font-style: italic; font-size: 13px; margin-left: 8px; }
+
+    @media (max-width: 720px) {
+      .detail { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌿 生物分类学习</h1>
+    <span class="mnemonic"><b>界</b> 门 纲 目 科 属 <b>种</b></span>
+    <span class="spacer"></span>
+    <button id="home-btn" title="回到顶层（界）">⌂ 界</button>
+  </header>
+
+  <main>
+    <div class="crumb" id="crumb"></div>
+    <div id="content"></div>
+  </main>
+
+  <script>
+    const RANK_LABELS = [
+      { ch: '生物', en: 'Life' },
+      { ch: '界', en: 'Kingdom' },
+      { ch: '门', en: 'Phylum' },
+      { ch: '纲', en: 'Class' },
+      { ch: '目', en: 'Order' },
+      { ch: '科', en: 'Family' },
+      { ch: '属', en: 'Genus' },
+      { ch: '种', en: 'Species' },
+    ];
+
+    const state = {
+      root: null,
+      path: [],       // array of child indexes from root to current node
+      imgCache: new Map(),  // titleKey -> url|null
+    };
+
+    async function main() {
+      try {
+        state.root = await fetch('data/taxa.json').then(r => {
+          if (!r.ok) throw new Error('taxa.json ' + r.status);
+          return r.json();
+        });
+      } catch (e) {
+        document.getElementById('content').textContent = '加载失败：' + e.message;
+        return;
+      }
+      window.addEventListener('popstate', () => { readHash(); render(); });
+      readHash();
+      document.getElementById('home-btn').addEventListener('click', () => go([]));
+      render();
+    }
+
+    // URL hash sync: #1/9/5 = path [1,9,5]
+    function readHash() {
+      const h = (location.hash || '').replace(/^#/, '').trim();
+      if (!h) { state.path = []; return; }
+      const parts = h.split('/').map(x => parseInt(x, 10)).filter(x => !isNaN(x));
+      // validate
+      let node = state.root;
+      const valid = [];
+      for (const i of parts) {
+        const children = node.children || [];
+        if (i < 0 || i >= children.length) break;
+        valid.push(i);
+        node = children[i];
+      }
+      state.path = valid;
+    }
+    function writeHash() {
+      const h = state.path.join('/');
+      const target = h ? '#' + h : '#';
+      if (location.hash !== target) history.pushState(null, '', target);
+    }
+
+    function nodeAt(path) {
+      let node = state.root;
+      for (const i of path) node = node.children[i];
+      return node;
+    }
+    function currentNode() { return nodeAt(state.path); }
+
+    function rankAt(depth) { return RANK_LABELS[depth] || RANK_LABELS[RANK_LABELS.length - 1]; }
+
+    function go(path) {
+      state.path = path.slice();
+      writeHash();
+      render();
+    }
+    function dive(i) { go([...state.path, i]); }
+
+    function render() {
+      renderCrumb();
+      const node = currentNode();
+      const content = document.getElementById('content');
+      content.innerHTML = '';
+      if (node.children && node.children.length) {
+        renderChildren(node, content);
+      } else {
+        renderDetail(node, content);
+      }
+    }
+
+    function renderCrumb() {
+      const crumb = document.getElementById('crumb');
+      crumb.innerHTML = '';
+      const items = [{ node: state.root, depth: 0, path: [] }];
+      let cur = state.root;
+      for (let k = 0; k < state.path.length; k++) {
+        cur = cur.children[state.path[k]];
+        items.push({ node: cur, depth: k + 1, path: state.path.slice(0, k + 1) });
+      }
+      items.forEach((it, idx) => {
+        const isLast = idx === items.length - 1;
+        const el = document.createElement('span');
+        el.className = 'crumb-item' + (isLast ? ' current' : '');
+        const label = rankAt(it.depth);
+        el.innerHTML = `<span class="rank">${label.ch}</span><span>${it.node.zh}</span>`;
+        if (!isLast) el.addEventListener('click', () => go(it.path));
+        crumb.appendChild(el);
+        if (!isLast) {
+          const sep = document.createElement('span');
+          sep.className = 'sep';
+          sep.textContent = '›';
+          crumb.appendChild(sep);
+        }
+      });
+    }
+
+    function renderChildren(node, container) {
+      const childRank = rankAt(state.path.length + 1);
+      const hasAnyDist = node.children.some(c => c.distinction);
+
+      const head = document.createElement('div');
+      head.className = 'level-head';
+      head.innerHTML = `
+        <div class="rank-title"><span class="big">${childRank.ch}</span>下属 (${node.children.length})</div>
+        <div class="hint">${childRank.en} · 点击任一卡片向下查看</div>
+        <button class="compare-btn" id="compare-btn" ${hasAnyDist ? '' : 'disabled title="暂无区别说明"'}>🔍 对比区别</button>
+      `;
+      container.appendChild(head);
+
+      const panel = document.createElement('div');
+      panel.className = 'compare-panel';
+      panel.id = 'compare-panel';
+      panel.style.display = 'none';
+      panel.innerHTML = `
+        <div class="title">同级(${childRank.ch})区别对比</div>
+        ${node.children.map(ch => `
+          <div class="row">
+            <div class="name"><span class="zh">${ch.zh}</span><span class="latin">${ch.latin}</span></div>
+            <div class="desc ${ch.distinction ? '' : 'missing'}">${ch.distinction || '—（暂无区别说明）'}</div>
+          </div>
+        `).join('')}
+      `;
+      container.appendChild(panel);
+
+      const btn = head.querySelector('#compare-btn');
+      if (hasAnyDist) {
+        btn.addEventListener('click', () => {
+          const shown = panel.style.display !== 'none';
+          panel.style.display = shown ? 'none' : '';
+          btn.classList.toggle('active', !shown);
+        });
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+      node.children.forEach((ch, i) => {
+        const card = createCard(ch, childRank, () => dive(i));
+        grid.appendChild(card);
+      });
+      container.appendChild(grid);
+    }
+
+    function createCard(n, rank, onClick) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      const hasChildren = n.children && n.children.length;
+      card.innerHTML = `
+        <div class="card-img"><div class="placeholder loading"></div></div>
+        <div class="card-body">
+          <div class="rank-tag"><b>${rank.ch}</b> · ${rank.en}</div>
+          <div class="zh">${n.zh}</div>
+          <div class="latin">${n.latin}</div>
+          ${n.note ? `<div class="note">${n.note}</div>` : ''}
+          <div class="leaf-hint">${hasChildren ? `下属 ${n.children.length} 项 ›` : '终点（种/叶节点）'}</div>
+        </div>
+      `;
+      card.addEventListener('click', onClick);
+      loadThumbnail(n).then(url => setCardImg(card.querySelector('.card-img'), url, n.zh));
+      return card;
+    }
+
+    function setCardImg(container, url, alt) {
+      if (url) {
+        container.innerHTML = '';
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.src = url;
+        img.alt = alt || '';
+        container.appendChild(img);
+      } else {
+        container.innerHTML = '<div class="placeholder">（暂无图）</div>';
+      }
+    }
+
+    function renderDetail(node, container) {
+      const depth = state.path.length;
+      const rank = rankAt(depth);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'detail';
+      wrap.innerHTML = `
+        <div class="detail-img"><div class="placeholder loading"></div></div>
+        <div class="detail-info">
+          <div class="rank-tag" style="color:var(--muted);font-size:12px;letter-spacing:.05em;">${rank.ch} · ${rank.en}</div>
+          <h2>${node.zh}</h2>
+          <div class="latin">${node.latin}</div>
+          ${node.note ? `<div class="note">${node.note}</div>` : ''}
+          ${node.distinction ? `<div class="note" style="color:var(--accent);border-left:3px solid var(--accent);padding-left:10px;margin:10px 0;">🔍 ${node.distinction}</div>` : ''}
+          <div class="links">
+            <a href="${wikiZhUrl(node)}" target="_blank" rel="noopener">📖 中文维基</a>
+            <a href="${wikiEnUrl(node)}" target="_blank" rel="noopener">🌐 English Wiki</a>
+            <a href="${imagesUrl(node)}" target="_blank" rel="noopener">🖼 更多图片</a>
+          </div>
+          <div class="ancestry">
+            <div class="ancestry-title">完整分类路径</div>
+            ${renderAncestry()}
+          </div>
+        </div>
+      `;
+      container.appendChild(wrap);
+      loadThumbnail(node).then(url => {
+        const slot = wrap.querySelector('.detail-img');
+        if (url) {
+          slot.innerHTML = '';
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = node.zh;
+          slot.appendChild(img);
+        } else {
+          slot.innerHTML = '<div class="placeholder">（暂无图）</div>';
+        }
+      });
+    }
+
+    function renderAncestry() {
+      const rows = [];
+      let cur = state.root;
+      rows.push({ depth: 0, node: cur });
+      for (let k = 0; k < state.path.length; k++) {
+        cur = cur.children[state.path[k]];
+        rows.push({ depth: k + 1, node: cur });
+      }
+      // skip depth 0 (root "生物"); start from kingdom
+      return rows.slice(1).map(r => {
+        const label = rankAt(r.depth);
+        return `<div class="ancestry-row">
+          <div class="ancestry-rank">${label.ch}<span class="en">${label.en}</span></div>
+          <div class="ancestry-name"><span class="zh">${r.node.zh}</span><span class="latin">${r.node.latin}</span></div>
+        </div>`;
+      }).join('');
+    }
+
+    // Wikipedia thumbnails via REST summary
+    async function loadThumbnail(n) {
+      const keyZh = n.wiki_zh || n.zh;
+      const keyEn = n.wiki_en || n.latin;
+      const cacheKey = 'zh:' + keyZh + '|en:' + keyEn;
+      if (state.imgCache.has(cacheKey)) return state.imgCache.get(cacheKey);
+      let url = null;
+      if (keyZh) url = await fetchSummaryImage('zh', keyZh);
+      if (!url && keyEn) url = await fetchSummaryImage('en', keyEn);
+      state.imgCache.set(cacheKey, url);
+      return url;
+    }
+    async function fetchSummaryImage(lang, title) {
+      try {
+        const u = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+        const r = await fetch(u);
+        if (!r.ok) return null;
+        const d = await r.json();
+        return d.thumbnail?.source || d.originalimage?.source || null;
+      } catch { return null; }
+    }
+
+    function wikiZhUrl(n) {
+      const title = n.wiki_zh || n.zh;
+      return `https://zh.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+    }
+    function wikiEnUrl(n) {
+      const title = n.wiki_en || n.latin;
+      return `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+    }
+    function imagesUrl(n) {
+      const q = ((n.zh || '') + ' ' + (n.latin || '')).trim();
+      return `https://www.bing.com/images/search?q=${encodeURIComponent(q)}`;
+    }
+
+    main();
+  </script>
+</body>
+</html>
